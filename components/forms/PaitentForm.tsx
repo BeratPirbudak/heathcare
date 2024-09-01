@@ -9,6 +9,7 @@ import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { userFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/paitent.actions"
 
 
 
@@ -50,16 +51,16 @@ const PaitentForm = () => {
     setIsLoading(true)
 
     try{
-      // const userData = { name, email, phoneInput }
-
-      // const user = await createUser(userData)
-
-      // if(user){
-      //   router.push(`/paitents/${user.id}/register`)
-      // }
+      const userData = { name, email, phoneInput }
+    
+      const user = await createUser(userData)
+      if(user){
+        router.push(`/paitents/${user.id}/register`)
+      }
     }catch(error){
       console.log(error)
     }
+    
 
     
   }

@@ -16,8 +16,8 @@ const SubmitButton = ({isLoading, className, children}: ButtonProps) => {
                     <Image
                         src="/assets/icons/loader.svg"
                         alt = "loader"
-                        width = {20}
-                        height = {20}
+                        width = {24}
+                        height = {24}
                         className="animate-spin"
                     />
 
