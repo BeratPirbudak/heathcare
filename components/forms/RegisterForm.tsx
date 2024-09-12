@@ -184,14 +184,14 @@ return (
                 <CustomFormCreation
                     control={form.control}
                     fieldType={FormFieldTypes.INPUT}
-                    name="emegencyContactName"
+                    name="emergencyContactName"
                     label="Emergency Contact Name"
                     placeholder="Guardian's Name"
                 />
                 <CustomFormCreation
                     control={form.control}
                     fieldType={FormFieldTypes.PHONE_INPUT}
-                    name="ememrgencyContactNumber"
+                    name="emergencyContactNumber"
                     label="Emeregency Contact Number"
                     placeholder="123-456-7890"
                 />
