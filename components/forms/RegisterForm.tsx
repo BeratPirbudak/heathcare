@@ -48,7 +48,7 @@ const RegisterForm = ({user} : {user : User}) => {
                 name: "",
                 email: "",
                 phoneInput: "",
-                gender: "male" // or "female" or "other"
+                gender: "male"
             },
     })
  
@@ -61,7 +61,6 @@ const RegisterForm = ({user} : {user : User}) => {
     if(values.identificationDocument &&values.identificationDocument.length > 0){
         const blobfile = new Blob([values.identificationDocument[0]], {type: values.identificationDocument[0].type,})
 
-
         formData = new FormData()
         formData.append("blobFile", blobfile)
         formData.append("fileName", values.identificationDocument[0].name)
@@ -70,8 +69,8 @@ const RegisterForm = ({user} : {user : User}) => {
     try{
         const paitentData = {
             ...values,
-            userId: user.$id,
-            birthdate: new Date(values.birthDate),
+            userID: user.$id,
+            birthDate: new Date(values.birthDate),
             identificationDocument: formData,
         }
         // @ts-ignore
@@ -131,7 +130,7 @@ return (
             </div>
 
             <div className="flex flex-col gap-6 xl:flex-row">
-            <CustomFormCreation
+                <CustomFormCreation
                     control={form.control}
                     fieldType={FormFieldTypes.DATE_PICKER}
                     name="birthDate"

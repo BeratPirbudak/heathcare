@@ -15,7 +15,6 @@ export const createUser = async (user: CreateUserParams) => {
             user.name
         )
 
-        console.log({newUser})
 
         return parseStringify(newUser)
     }catch(error: any){
@@ -53,8 +52,6 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
 
             file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile)
         }
-
-
         const newUser = await databases.createDocument(
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,
