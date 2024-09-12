@@ -48,7 +48,6 @@ const RegisterForm = ({user} : {user : User}) => {
                 name: "",
                 email: "",
                 phoneInput: "",
-                gender: "male"
             },
     })
  
@@ -77,7 +76,7 @@ const RegisterForm = ({user} : {user : User}) => {
         const paitent = await registerPatient(paitentData)
 
         if(paitent){
-            router.push(`/paitents/${user.$id}/new-appointment`)
+            router.push(`/patients/${user.$id}/new-appointment`)
         }
 
     }catch(error){
@@ -350,7 +349,7 @@ return (
 
 
             <SubmitButton isLoading={isLoading}>
-                Sumbit and Continue
+                Get Started
             </SubmitButton>
         </form>
     </Form>
