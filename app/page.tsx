@@ -1,11 +1,16 @@
 import PaitentForm from "@/components/forms/PaitentForm";
+import PasskeyModal from "@/components/PasskeyModal";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({ searchParams } : SearchParamProps) {
+
+  const isAdmin = searchParams?.admin === 'true';
+  
+
   return (
     <div className="flex h-screen max-h-screen">
-      {/* TODO: OTP Verification | PassKeyModal */}
+      {isAdmin && <PasskeyModal />}
 
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
