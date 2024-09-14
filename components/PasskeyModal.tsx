@@ -19,7 +19,7 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Image from 'next/image';
 import { usePathname, useRouter } from "next/navigation";
 import { decryptKey, encryptKey } from "@/lib/utils";
@@ -47,7 +47,7 @@ const PasskeyModal = () => {
 
   }, [encryptedKey])
 
-  const validatePasskey = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const validatePasskey = (e : React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY){
 
