@@ -68,7 +68,7 @@ const RegisterForm = ({user} : {user : User}) => {
     try{
         const paitentData = {
             ...values,
-            userID: user.$id,
+            userId: user.$id,
             birthDate: new Date(values.birthDate),
             identificationDocument: formData,
         }
