@@ -37,21 +37,21 @@ const Admin = async () => {
             <section className='admin-stat'>
                 <StatCard 
                     type='appointments'
-                    count={appointments.scheduled}
+                    count={appointments.scheduledCount}
                     label='Scheduled appointments'
                     icon='/assets/icons/appointments.svg'
                 />
 
                 <StatCard 
                     type='pending'
-                    count={appointments.pending}
+                    count={appointments.pendingCount}
                     label='Pending appointments'
                     icon='/assets/icons/pending.svg'
                 />
 
                 <StatCard 
                     type='cancelled'
-                    count={appointments.cancelled}
+                    count={appointments.cancelledCount}
                     label='Cancelled appointments'
                     icon='/assets/icons/cancelled.svg'
                 />
