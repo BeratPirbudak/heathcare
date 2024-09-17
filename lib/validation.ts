@@ -1,16 +1,17 @@
-
 import { z } from "zod";
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
-export const UserFormValidation = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name must be at most 50 characters"),
-  email: z.string().email("Invalid email address"),
-  phoneInput: z
-    .string()
-    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+export const userFormValidation = z.object({
+    name: z.string()
+        .min(2, "Username must be at least 2 characters long")
+        .max(20, "Username must be at most 20 characters long"),
+    email: z.string().email("Please enter a valid email"),
+    phoneInput: z.string().refine((phone) => {
+        const phoneNumber = parsePhoneNumberFromString(phone || '');
+        return phoneNumber ? phoneNumber.isValid() : false;
+    }, "Invalid phone number")
 });
+
 
 export const PatientFormValidation = z.object({
   name: z
@@ -18,11 +19,12 @@ export const PatientFormValidation = z.object({
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be at most 50 characters"),
   email: z.string().email("Invalid email address"),
-  phoneInput: z
-    .string()
-    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+  phoneInput: z.string().refine((phone) => {
+    const phoneNumber = parsePhoneNumberFromString(phone || '');
+    return phoneNumber ? phoneNumber.isValid() : false;
+  }, "Invalid phone number"),
   birthDate: z.coerce.date(),
-  gender: z.enum(["Male", "Female", "Other"]),
+  gender: z.enum(["male", "female", "other"]),
   address: z
     .string()
     .min(5, "Address must be at least 5 characters")
