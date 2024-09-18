@@ -18,7 +18,14 @@ import { createAppointment, updateAppointment } from "@/lib/actions/appointment.
 import { Appointment } from "@/types/appwrite.types"
 
 
-const AppointmentForm = ({userId, patientId, type, appointment, setOpen}: {userId: string, patientId: string, type: "create" | "cancel" | "schedule", appointment?: Appointment, setOpen:(open: boolean) => void}) => {
+const AppointmentForm = ({userId, patientId, type, appointment, setOpen}: 
+    {
+        userId: string, 
+        patientId: string, 
+        type: "create" | "cancel" | "schedule", 
+        appointment?: Appointment, 
+        setOpen?:(open: boolean) => void
+    }) => {
   const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(false)
