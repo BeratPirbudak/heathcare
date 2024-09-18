@@ -10,7 +10,7 @@ import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { userFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
-import { createUser } from "@/lib/actions/paitent.actions"
+import { createUser, getPatient } from "@/lib/actions/paitent.actions"
 
 
 
@@ -55,7 +55,13 @@ const PaitentForm = () => {
       const userData = { name, email, phoneInput }
     
       const user = await createUser(userData)
-      if(user){
+
+      const checkExistingPatient = await getPatient(user.$id);
+      
+      if(user && checkExistingPatient){
+        router.push(`/patients/${user.$id}/new-appointment`);
+      }
+      else if(user){
         router.push(`/patients/${user.$id}/register`);
       }
     }catch(error){

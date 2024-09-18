@@ -6,27 +6,28 @@ import { parseStringify } from "../utils"
 import { InputFile } from "node-appwrite/file"
 
 export const createUser = async (user: CreateUserParams) => {
-    try{
-        const newUser = await users.create(
-            ID.unique(), 
-            user.email, 
-            user.phoneInput, 
-            undefined, 
-            user.name
-        )
+  try {
+    const newuser = await users.create(
+      ID.unique(),
+      user.email,
+      user.phoneInput,
+      undefined,
+      user.name
+    );
 
+    return parseStringify(newuser);
+  } catch (error: any) {
+    if (error && error?.code === 409) {
+      const existingUser = await users.list([
+        Query.equal("email", [user.email]),
+      ]);
 
-        return parseStringify(newUser)
-    }catch(error: any){
-        if(error && error?.code === 409){
-            const documents = await users.list([
-                Query.equal('email', [user.email])
-            ])
-
-            return documents?.users[0]
-        }
+      return existingUser.users[0];
     }
-}
+    console.error("An error occurred while creating a new user:", error);
+  }
+};
+
 
 export const getUser = async (userId: string) => {
     try{
@@ -49,6 +50,10 @@ export const getPatient = async (userId: string) => {
                 Query.equal('userId', userId)
             ]
         );
+
+        if(patients.documents.length === 0){
+            return null;
+        }
         
         return parseStringify(patients.documents[0]);
     }catch(error){
